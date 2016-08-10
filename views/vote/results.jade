@@ -1,0 +1,27 @@
+extends ../layout
+
+block content
+    script(src='https://www.gstatic.com/charts/loader.js')
+    
+    .page-header
+        h3 #{poll.title} by #{poll.author} - Results
+    
+                    
+    #chart_div.col-md-offset-2
+    
+    script.
+        var title = '#{poll.title}'
+        console.log(#{results})
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Option');
+        data.addColumn('number', 'Votes');
+        data.addRows([#{results}]);
+        var options = {'title':title,
+                       'width':800,
+                       'height':600};
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+        }

@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+    .page-header
+        h3 Recent polls
+    each poll in polls
+            .row
+                .col-md-11.text-center
+                    a(href="vote/#{poll.id}") #{poll.title}
+                .col-md-1
+                    a.btn.btn-info(href='/results/#{poll.id}') Results

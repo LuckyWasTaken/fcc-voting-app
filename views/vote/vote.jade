@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+
+    script.
+        var custom = function() {
+            window.location = '/vote/#{poll.id}/' + document.getElementById('custom').value
+        }
+    .page-header
+        h3 #{poll.title} by #{poll.author}
+    ul
+        each option in poll.votes
+            .row
+                .col-md-8.text-center
+                    | #{option.option}
+                .col-md-4
+                    a.btn.btn-primary(href='/vote/#{poll.id}/#{option.option}') Vote
+        if (user)
+            .row
+                .col-md-8.text-center
+                    input.form-control#custom(placeholder="Your option")
+                .col-md-4
+                    button.btn.btn-primary(onclick='custom()') Vote

@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+    .page-header
+        h3 Your polls
+    each poll in polls
+            .row
+                .col-md-10.text-center
+                    a(href="vote/#{poll.id}") #{poll.title}
+                .col-md-1
+                    a.btn.btn-info(href='/results/#{poll.id}') Results
+                .col-md-1
+                    a.btn.btn-danger(href='/delete/#{poll.id}') Delete

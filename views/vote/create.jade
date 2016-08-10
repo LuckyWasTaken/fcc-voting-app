@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+    .page-header
+        h3 Create a poll
+    form.form-horizontal(method='POST')
+        input(type='hidden', name='_csrf', value=_csrf)
+        .form-group
+            label.col-sm-3.control-label(for='title') Title
+            .col-sm-7
+                input.form-control(name='title', id='title', placeholder='Title', autofocus, required)
+        .form-group
+            label.col-sm-3.control-label(for='options') Options
+            .col-sm-7
+                textarea.form-control(name='options', id='options', placeholder='Options, separated by comma', required)
+        .form-group
+            .col-sm-offset-3.col-sm-7
+                button.btn.btn-primary(type='submit')
+                    i.fa.fa-paper-plane
+                    | Submit
+                
